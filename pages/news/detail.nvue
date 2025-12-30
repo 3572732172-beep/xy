@@ -1,0 +1,401 @@
+<template>
+  <view class="content">
+    <view class="banner" auto-focus>
+      <image class="banner-img" :src="banner.image_url"></image>
+      <view class="title-area">
+        <text class="title-text">{{banner.title}}</text>
+      </view>
+    </view>
+    <view class="article-meta">
+      <text class="article-meta-text article-author">{{banner.source}}</text>
+      <text class="article-meta-text article-text">发表于</text>
+      <text class="article-meta-text article-time">{{banner.datetime}}</text>
+    </view>
+    <view class="article-content">
+      <rich-text :nodes="content" style="font-size: 14px;"></rich-text>
+    </view>
+    <view class="comment-wrap">
+      <view class="section-title">
+        <text class="section-title-text">客户评价</text>
+      </view>
+      <view v-if="comments && comments.length" class="comment-list">
+        <view v-for="(item, idx) in comments" :key="idx" class="comment-card">
+          <view class="comment-header">
+            <text class="comment-name">{{ item.name }}</text>
+            <text class="comment-date">{{ item.date }}</text>
+          </view>
+          <text class="comment-content">{{ item.content }}</text>
+        </view>
+      </view>
+      <view v-else class="comment-empty">
+        <text class="comment-empty-text">暂无评价</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import htmlParser from '../../common/html-parser'
+
+  const FAIL_CONTENT = '<p>获取信息失败1</p>';
+
+  function parseImgs(nodes) {
+    nodes.forEach(node => {
+      if (
+        node.name === 'img' &&
+        node.attrs &&
+        node.attrs['data-img-size-val']
+      ) {
+        const sizes = node.attrs['data-img-size-val'].split(',')
+        const width = uni.upx2px(720 * 0.9)
+        const height = parseInt(width * (sizes[1] / sizes[0]))
+        node.attrs.style = `width:${width};height:${height};`
+      }
+      if (Array.isArray(node.children)) {
+        parseImgs(node.children)
+      }
+    })
+    return nodes
+  }
+
+  export default {
+    data() {
+      return {
+        banner: {},
+        content: [],
+        comments: []
+      }
+    },
+    onShareAppMessage() {
+      return {
+        title: this.banner.title || '案例详情',
+        path: '/pages/news/detail?query=' + encodeURIComponent(JSON.stringify(this.banner))
+      }
+    },
+    onLoad(options) {
+      // 小程序平台使用 options.query，App平台可能使用 options.query 或 event.query
+      // 兼容处理不同平台的参数格式
+      let queryParam = options.query || options;
+      
+      // 如果是字符串，直接使用；如果是对象，转为字符串
+      if (typeof queryParam === 'string') {
+        this.load(queryParam);
+      } else if (queryParam && typeof queryParam === 'object') {
+        // 如果已经是对象，直接使用
+        this.banner = queryParam;
+        uni.setNavigationBarTitle({
+          title: this.banner.title || '案例详情'
+        });
+        this.getDetail();
+        this.loadComments();
+      } else {
+        console.error('未获取到有效参数', options);
+        uni.showToast({
+          title: '参数错误',
+          icon: 'none'
+        });
+      }
+    },
+    methods: {
+      load(e) {
+        if (!e) {
+          console.error('参数为空');
+          return;
+        }
+        
+        // 尝试解码参数（可能需要多次解码）
+        let p = e;
+        try {
+          // 第一次解码
+          p = decodeURIComponent(p);
+          // 如果解码后仍然是编码格式，再次解码
+          if (p.includes('%')) {
+            try {
+              p = decodeURIComponent(p);
+            } catch (e2) {
+              // 第二次解码失败，使用第一次解码结果
+            }
+          }
+        } catch (decodeError) {
+          console.error('参数解码失败:', decodeError);
+          // 如果解码失败，尝试直接使用
+          p = e;
+        }
+        
+        try {
+          this.banner = JSON.parse(p);
+        } catch (parseError) {
+          console.error('JSON解析失败:', parseError);
+          console.error('原始参数:', e);
+          console.error('解码后参数:', p);
+          uni.showToast({
+            title: '数据解析失败',
+            icon: 'none'
+          });
+          // 设置默认值，避免页面崩溃
+          this.banner = {
+            title: '加载失败',
+            image_url: '',
+            source: '',
+            datetime: ''
+          };
+        }
+
+        uni.setNavigationBarTitle({
+          title: this.banner.title || '案例详情'
+        });
+
+        this.getDetail();
+        this.loadComments();
+      },
+      getDetail() {
+        // 如果案例数据中已有内容，直接使用
+        if (this.banner.content) {
+          const nodes = htmlParser(this.banner.content);
+          // #ifdef APP-PLUS-NVUE
+          parseImgs(nodes)
+          // #endif
+          this.content = nodes;
+          return;
+        }
+        
+        // 否则根据分类和标题生成内容
+        const content = this.generateCaseContent(this.banner);
+        const nodes = htmlParser(content);
+        // #ifdef APP-PLUS-NVUE
+        parseImgs(nodes)
+        // #endif
+        this.content = nodes;
+      },
+      
+      generateCaseContent(banner) {
+        // 根据标题和分类生成案例详情内容
+        const title = banner.title || '';
+        const master = banner.source || '专业电工';
+        const date = banner.datetime || '';
+        
+        let content = `<h2>${title}</h2>`;
+        content += `<p><strong>施工师傅：</strong>${master}</p>`;
+        content += `<p><strong>案例时间：</strong>${date}</p>`;
+        content += `<hr/>`;
+        
+        // 根据标题关键词生成相应内容
+        if (title.includes('电路改造') || title.includes('用电改造')) {
+          content += `<p>本案例详细记录了${master}为客户进行电路改造的完整过程。</p>`;
+          content += `<h3>一、现场情况</h3>`;
+          content += `<p>客户反映家中电路老化，经常出现跳闸、电压不稳等问题。经过现场检测，发现主要问题包括电路容量不足、电线老化、配电箱配置不合理等。</p>`;
+          content += `<h3>二、改造方案</h3>`;
+          content += `<p>1. 更换全部室内电线，使用国标铜线</p>`;
+          content += `<p>2. 升级配电箱，增加漏电保护器</p>`;
+          content += `<p>3. 重新规划电路布局，合理分配负载</p>`;
+          content += `<p>4. 增加插座数量，满足现代生活需求</p>`;
+          content += `<h3>三、施工过程</h3>`;
+          content += `<p>${master}严格按照国家电气施工规范，确保施工质量和安全。整个改造过程历时3天，期间保持与客户的良好沟通。</p>`;
+          content += `<h3>四、改造效果</h3>`;
+          content += `<p>改造完成后，电路运行稳定，未再出现跳闸现象。客户对改造效果非常满意，称赞${master}专业细致，施工规范。</p>`;
+        } else if (title.includes('维修') || title.includes('故障')) {
+          content += `<p>本案例详细记录了${master}为客户排除电路故障的完整过程。</p>`;
+          content += `<h3>一、故障现象</h3>`;
+          content += `<p>客户反映家中电路出现异常，具体表现为频繁跳闸、电器无法正常工作等。</p>`;
+          content += `<h3>二、故障诊断</h3>`;
+          content += `<p>${master}使用专业工具进行检测，快速定位故障原因。通过系统排查，发现是电路短路/接触不良/过载等问题。</p>`;
+          content += `<h3>三、维修方案</h3>`;
+          content += `<p>根据故障原因，${master}制定了针对性的维修方案，确保彻底解决问题。</p>`;
+          content += `<h3>四、维修效果</h3>`;
+          content += `<p>维修完成后，电路恢复正常，客户对${master}的专业技能和服务态度表示高度认可。</p>`;
+        } else if (title.includes('维护') || title.includes('保养')) {
+          content += `<p>本案例详细记录了${master}为客户进行电器维护的完整过程。</p>`;
+          content += `<h3>一、维护需求</h3>`;
+          content += `<p>客户希望定期对家中电器进行维护保养，延长使用寿命，确保安全运行。</p>`;
+          content += `<h3>二、维护内容</h3>`;
+          content += `<p>${master}对客户家中的电器进行了全面检查，包括电路连接、绝缘性能、接地情况等。</p>`;
+          content += `<h3>三、维护建议</h3>`;
+          content += `<p>${master}向客户提供了专业的维护建议，帮助客户建立正确的用电习惯。</p>`;
+          content += `<h3>四、维护效果</h3>`;
+          content += `<p>经过维护，电器运行更加稳定，客户对${master}的专业服务表示满意。</p>`;
+        } else {
+          content += `<p>本案例详细记录了${master}为客户提供专业电工服务的完整过程。</p>`;
+          content += `<h3>一、客户需求</h3>`;
+          content += `<p>客户遇到了用电相关问题，需要专业电工提供解决方案。</p>`;
+          content += `<h3>二、解决方案</h3>`;
+          content += `<p>${master}根据客户的具体情况，制定了专业的解决方案，确保问题得到彻底解决。</p>`;
+          content += `<h3>三、服务过程</h3>`;
+          content += `<p>${master}严格按照规范操作，确保施工质量和安全，期间与客户保持良好沟通。</p>`;
+          content += `<h3>四、服务效果</h3>`;
+          content += `<p>服务完成后，客户对${master}的专业技能和服务态度表示高度认可，问题得到圆满解决。</p>`;
+        }
+        
+        return content;
+      },
+      
+      /**
+       * 客户评论（示例静态数据，可替换为接口返回）
+       */
+      loadComments() {
+        this.comments = [
+          {
+            name: '王先生',
+            date: '2024-01-18',
+            content: '师傅很专业，沟通顺畅，施工规范，改造后再也没跳闸。'
+          },
+          {
+            name: '李女士',
+            date: '2024-01-12',
+            content: '响应很快，现场检查细致，给了很多安全用电的建议。'
+          },
+          {
+            name: '陈老板',
+            date: '2024-01-05',
+            content: '商铺用电改造一次到位，验收顺利，后续还会合作。'
+          }
+        ];
+      }
+    }
+  }
+</script>
+
+<style>
+  /* #ifndef APP-PLUS */
+  page {
+    min-height: 100%;
+  }
+
+  /* #endif */
+
+  .banner {
+    height: 180px;
+    position: relative;
+    background-color: #ccc;
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  .banner-img {
+    flex: 1;
+  }
+
+  .title-area {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 11;
+  }
+
+  .title-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    lines: 2;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .article-meta {
+    padding: 10px 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .article-meta-text {
+    color: gray;
+  }
+
+  .article-text {
+    font-size: 12px;
+    line-height: 25px;
+    margin: 0 10px;
+  }
+
+  .article-author {
+    font-size: 15px;
+  }
+
+  .article-time {
+    font-size: 15px;
+  }
+
+  .article-content {
+    font-size: 15px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .comment-wrap {
+    margin: 0 15px 30px;
+    padding: 15px;
+    background-color: #f7f9fb;
+    border-radius: 12px;
+  }
+
+  .section-title {
+    margin-bottom: 12px;
+  }
+
+  .section-title-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .comment-list {
+    gap: 12px;
+  }
+
+  .comment-card {
+    padding: 12px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  .comment-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .comment-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2F85FC;
+  }
+
+  .comment-date {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .comment-content {
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+  }
+
+  .comment-empty {
+    padding: 12px 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comment-empty-text {
+    font-size: 14px;
+    color: #999;
+  }
+
+  /* #ifdef H5 */
+
+  .article-content {
+    line-height: 1.8;
+  }
+
+  .article-content img {
+    max-width: 100%;
+  }
+
+  /* #endif */
+</style>

@@ -1,0 +1,121 @@
+@import "../../nvue.wxss";
+
+page {
+    min-height: 100%;
+}
+.banner {
+    height: 180px;
+    position: relative;
+    background-color: #ccc;
+    flex-direction: row;
+    overflow: hidden;
+}
+.banner-img {
+    flex: 1;
+}
+.title-area {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 11;
+}
+.title-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    lines: 2;
+    color: #ffffff;
+    overflow: hidden;
+}
+.article-meta {
+    padding: 10px 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.article-meta-text {
+    color: gray;
+}
+.article-text {
+    font-size: 12px;
+    line-height: 25px;
+    margin: 0 10px;
+}
+.article-author {
+    font-size: 15px;
+}
+.article-time {
+    font-size: 15px;
+}
+.article-content {
+    font-size: 15px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.comment-wrap {
+    margin: 0 15px 30px;
+    padding: 15px;
+    background-color: #f7f9fb;
+    border-radius: 12px;
+}
+.section-title {
+    margin-bottom: 12px;
+}
+.section-title-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+.comment-list {
+    gap: 12px;
+}
+.comment-card {
+    padding: 12px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.comment-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.comment-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2F85FC;
+}
+.comment-date {
+    font-size: 12px;
+    color: #999;
+}
+.comment-content {
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+}
+.comment-empty {
+    padding: 12px 0;
+    align-items: center;
+    justify-content: center;
+}
+.comment-empty-text {
+    font-size: 14px;
+    color: #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/demand/create",
+    "pages/user/order/list",
+    "pages/user/settings/index",
+    "pages/user/demand/drafts",
+    "pages/user/login/index",
+    "pages/news/index",
+    "pages/news/detail",
+    "pages/user/match/quotes",
+    "pages/user/match/masters",
+    "pages/user/match/master-detail",
+    "pages/user/demand/detail",
+    "pages/user/order/detail",
+    "pages/user/chat/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "乡野电安",
+    "navigationBarBackgroundColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#2F85FC",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/news/index",
+        "iconPath": "static/anli.png",
+        "selectedIconPath": "static/anli.png",
+        "text": "案例"
+      },
+      {
+        "pagePath": "pages/user/order/list",
+        "iconPath": "static/center.png",
+        "selectedIconPath": "static/center-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于获取施工地址及附近位置推荐"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "usingComponents": {}
+}

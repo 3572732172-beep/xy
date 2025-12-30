@@ -1,0 +1,221 @@
+
+.container.data-v-149c0fcf {
+	padding: 0 20rpx 20rpx;
+	background-color: #f0f9f4;
+	min-height: 100vh;
+}
+.order-card.data-v-149c0fcf, .info-card.data-v-149c0fcf {
+	background-color: #fff;
+	border-radius: 12rpx;
+	padding: 30rpx;
+	margin-bottom: 20rpx;
+}
+.order-header.data-v-149c0fcf {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+.order-id.data-v-149c0fcf {
+	font-size: 28rpx;
+	color: #666;
+}
+.status-badge.data-v-149c0fcf {
+	padding: 8rpx 16rpx;
+	border-radius: 8rpx;
+	font-size: 24rpx;
+}
+.status-1.data-v-149c0fcf {
+	background-color: #fff3cd;
+	color: #856404;
+}
+.status-2.data-v-149c0fcf {
+	background-color: #d1ecf1;
+	color: #0c5460;
+}
+.status-3.data-v-149c0fcf {
+	background-color: #d4edda;
+	color: #155724;
+}
+.status-4.data-v-149c0fcf {
+	background-color: #d1ecf1;
+	color: #0c5460;
+}
+.progress-section.data-v-149c0fcf {
+	margin-top: 20rpx;
+}
+.progress-title.data-v-149c0fcf {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.progress-steps.data-v-149c0fcf {
+	display: flex;
+	justify-content: space-between;
+}
+.step-item.data-v-149c0fcf {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+.step-item.data-v-149c0fcf:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	top: 15rpx;
+	left: 50%;
+	width: 100%;
+	height: 2rpx;
+	background-color: #e0e0e0;
+	z-index: 0;
+}
+.step-item.completed.data-v-149c0fcf:not(:last-child)::after {
+	background-color: #2F85FC;
+}
+.step-dot.data-v-149c0fcf {
+	width: 30rpx;
+	height: 30rpx;
+	border-radius: 50%;
+	background-color: #e0e0e0;
+	border: 4rpx solid #fff;
+	position: relative;
+	z-index: 1;
+	margin-bottom: 10rpx;
+}
+.step-item.active .step-dot.data-v-149c0fcf {
+	background-color: #2F85FC;
+}
+.step-item.completed .step-dot.data-v-149c0fcf {
+	background-color: #2F85FC;
+}
+.step-label.data-v-149c0fcf {
+	font-size: 24rpx;
+	color: #999;
+}
+.step-item.active .step-label.data-v-149c0fcf,
+.step-item.completed .step-label.data-v-149c0fcf {
+	color: #333;
+	font-weight: bold;
+}
+.card-title.data-v-149c0fcf {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.info-item.data-v-149c0fcf {
+	display: flex;
+	margin-bottom: 15rpx;
+	font-size: 28rpx;
+}
+.info-label.data-v-149c0fcf {
+	color: #666;
+	width: 160rpx;
+}
+.info-value.data-v-149c0fcf {
+	color: #333;
+	flex: 1;
+}
+.master-card.data-v-149c0fcf {
+	display: flex;
+	align-items: center;
+}
+.master-avatar.data-v-149c0fcf {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50rpx;
+	margin-right: 20rpx;
+}
+.master-info.data-v-149c0fcf {
+	flex: 1;
+}
+.master-name.data-v-149c0fcf {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+	display: block;
+	margin-bottom: 10rpx;
+}
+.master-rating.data-v-149c0fcf {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10rpx;
+}
+.rating-star.data-v-149c0fcf {
+	font-size: 24rpx;
+	margin-right: 5rpx;
+}
+.rating-value.data-v-149c0fcf {
+	font-size: 28rpx;
+	color: #ff9800;
+}
+.master-phone.data-v-149c0fcf {
+	font-size: 28rpx;
+	color: #2F85FC;
+}
+.price-item.data-v-149c0fcf {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15rpx;
+	font-size: 28rpx;
+}
+.price-label.data-v-149c0fcf {
+	color: #666;
+}
+.price-value.data-v-149c0fcf {
+	color: #333;
+	font-weight: bold;
+}
+.price-total.data-v-149c0fcf {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20rpx;
+	border-top: 2rpx solid #f0f0f0;
+	margin-top: 20rpx;
+}
+.total-label.data-v-149c0fcf {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+}
+.total-value.data-v-149c0fcf {
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #2F85FC;
+}
+.contract-item.data-v-149c0fcf {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20rpx 0;
+	font-size: 28rpx;
+	color: #333;
+}
+.contract-arrow.data-v-149c0fcf {
+	font-size: 32rpx;
+	color: #999;
+}
+.action-section.data-v-149c0fcf {
+	display: flex;
+	gap: 20rpx;
+	padding: 30rpx 0;
+}
+.btn.data-v-149c0fcf {
+	flex: 1;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	border-radius: 8rpx;
+	font-size: 32rpx;
+	border: none;
+}
+.btn-primary.data-v-149c0fcf {
+	background-color: #2F85FC;
+	color: #fff;
+}
+.btn-secondary.data-v-149c0fcf {
+	background-color: #f0f0f0;
+	color: #666;
+}

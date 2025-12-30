@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "乡野电安",
+  "usingComponents": {
+    "service-float": "../../components/ServiceFloat"
+  }
+}

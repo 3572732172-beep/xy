@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "师傅详情",
+  "usingComponents": {
+    "page-header": "../../../components/PageHeader"
+  }
+}

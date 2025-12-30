@@ -1,0 +1,117 @@
+
+.container.data-v-b83dda91 {
+	background-color: #f5f5f5;
+	min-height: 100vh;
+	padding: 20rpx;
+}
+.quote-list.data-v-b83dda91 {
+}
+.quote-item.data-v-b83dda91 {
+	background-color: #fff;
+	border-radius: 12rpx;
+	padding: 30rpx;
+	margin-bottom: 20rpx;
+}
+.quote-header.data-v-b83dda91 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+.master-avatar.data-v-b83dda91 {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50rpx;
+	margin-right: 20rpx;
+}
+.master-info.data-v-b83dda91 {
+	flex: 1;
+}
+.master-name.data-v-b83dda91 {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+	display: block;
+	margin-bottom: 10rpx;
+}
+.master-rating.data-v-b83dda91 {
+	display: flex;
+	align-items: center;
+}
+.rating-star.data-v-b83dda91 {
+	font-size: 24rpx;
+	margin-right: 5rpx;
+}
+.rating-value.data-v-b83dda91 {
+	font-size: 28rpx;
+	color: #ff9800;
+	margin-right: 10rpx;
+}
+.rating-count.data-v-b83dda91 {
+	font-size: 24rpx;
+	color: #999;
+}
+.quote-price.data-v-b83dda91 {
+	font-size: 40rpx;
+	font-weight: bold;
+	color: #2F85FC;
+}
+.quote-details.data-v-b83dda91 {
+	display: flex;
+	gap: 30rpx;
+	margin-bottom: 20rpx;
+	padding: 20rpx;
+	background-color: #f5f5f5;
+	border-radius: 8rpx;
+}
+.detail-item.data-v-b83dda91 {
+	font-size: 24rpx;
+}
+.detail-label.data-v-b83dda91 {
+	color: #666;
+}
+.detail-value.data-v-b83dda91 {
+	color: #333;
+	font-weight: bold;
+}
+.quote-materials.data-v-b83dda91 {
+	margin-bottom: 20rpx;
+	padding: 20rpx;
+	background-color: #f9f9f9;
+	border-radius: 8rpx;
+}
+.materials-label.data-v-b83dda91 {
+	font-size: 24rpx;
+	color: #666;
+	margin-right: 10rpx;
+}
+.materials-text.data-v-b83dda91 {
+	font-size: 24rpx;
+	color: #333;
+}
+.quote-actions.data-v-b83dda91 {
+	display: flex;
+	gap: 20rpx;
+}
+.btn.data-v-b83dda91 {
+	flex: 1;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	border-radius: 8rpx;
+	font-size: 28rpx;
+	border: none;
+}
+.btn-primary.data-v-b83dda91 {
+	background-color: #2F85FC;
+	color: #fff;
+}
+.btn-secondary.data-v-b83dda91 {
+	background-color: #f0f0f0;
+	color: #666;
+}
+.empty.data-v-b83dda91 {
+	text-align: center;
+	padding: 100rpx 0;
+	font-size: 28rpx;
+	color: #999;
+}

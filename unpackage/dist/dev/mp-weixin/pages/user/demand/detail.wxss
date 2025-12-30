@@ -1,0 +1,147 @@
+
+.container.data-v-19d212a2 {
+	padding: 0 20rpx 20rpx;
+	background-color: #f0f9f4;
+	min-height: 100vh;
+}
+.demand-card.data-v-19d212a2 {
+	background-color: #fff;
+	border-radius: 12rpx;
+	padding: 30rpx;
+	margin-bottom: 20rpx;
+}
+.demand-header.data-v-19d212a2 {
+	margin-bottom: 20rpx;
+}
+.status-badge.data-v-19d212a2 {
+	display: inline-block;
+	padding: 8rpx 16rpx;
+	border-radius: 8rpx;
+	font-size: 24rpx;
+	margin-bottom: 10rpx;
+}
+.status-1.data-v-19d212a2 {
+	background-color: #fff3cd;
+	color: #856404;
+}
+.status-2.data-v-19d212a2 {
+	background-color: #d1ecf1;
+	color: #0c5460;
+}
+.status-3.data-v-19d212a2 {
+	background-color: #d4edda;
+	color: #155724;
+}
+.status-4.data-v-19d212a2 {
+	background-color: #d1ecf1;
+	color: #0c5460;
+}
+.demand-title.data-v-19d212a2 {
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #333;
+	display: block;
+	margin-top: 10rpx;
+}
+.demand-info.data-v-19d212a2 {
+	margin-bottom: 20rpx;
+}
+.info-item.data-v-19d212a2 {
+	display: flex;
+	margin-bottom: 10rpx;
+	font-size: 28rpx;
+}
+.info-label.data-v-19d212a2 {
+	color: #666;
+	width: 160rpx;
+}
+.info-value.data-v-19d212a2 {
+	color: #333;
+	flex: 1;
+}
+.demand-description.data-v-19d212a2 {
+	margin-bottom: 20rpx;
+}
+.desc-label.data-v-19d212a2 {
+	font-size: 28rpx;
+	color: #666;
+	display: block;
+	margin-bottom: 10rpx;
+}
+.desc-content.data-v-19d212a2 {
+	font-size: 28rpx;
+	color: #333;
+	line-height: 1.6;
+}
+.demand-photos.data-v-19d212a2 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20rpx;
+}
+.photo-item.data-v-19d212a2 {
+	width: 200rpx;
+	height: 200rpx;
+	border-radius: 8rpx;
+}
+.action-section.data-v-19d212a2 {
+	display: flex;
+	gap: 20rpx;
+	margin-bottom: 20rpx;
+}
+.btn.data-v-19d212a2 {
+	flex: 1;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	border-radius: 8rpx;
+	font-size: 32rpx;
+	border: none;
+}
+.btn-primary.data-v-19d212a2 {
+	background-color: #2F85FC;
+	color: #fff;
+}
+.btn-secondary.data-v-19d212a2 {
+	background-color: #f0f0f0;
+	color: #666;
+}
+.quote-section.data-v-19d212a2 {
+	background-color: #fff;
+	border-radius: 12rpx;
+	padding: 30rpx;
+}
+.section-title.data-v-19d212a2 {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20rpx;
+}
+.quote-item.data-v-19d212a2 {
+	padding: 20rpx;
+	border: 2rpx solid #e0e0e0;
+	border-radius: 8rpx;
+	margin-bottom: 20rpx;
+	background-color: #fafafa;
+}
+.quote-header.data-v-19d212a2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10rpx;
+}
+.master-name.data-v-19d212a2 {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+}
+.quote-price.data-v-19d212a2 {
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #2F85FC;
+}
+.quote-info.data-v-19d212a2 {
+	display: flex;
+	gap: 30rpx;
+	font-size: 24rpx;
+	color: #999;
+}

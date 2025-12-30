@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "news-item": "./news-item",
+    "no-data": "../../components/nodata"
+  }
+}
